@@ -6,6 +6,7 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
+import {Router, Route, Link, browserHistory} from 'react-router'
 import 'antd/dist/antd.css';
 
 class PCHeader extends React.Component {
@@ -13,34 +14,55 @@ class PCHeader extends React.Component {
     constructor() {
         super();
         this.state = {
-            current: 'top',
-            modalVisible: false,
-            action: 'login',
-            hasLogined: false,
-            userNickName: '',
-            userid: 0
+           	current: 'top',
+			modalVisible: false,
+			action: 'login',
+			hasLogined: false,
+			userNickName: '',
+			userid: 0
         };
     };
 
-    setModelVisible(value){
+    setModalVisible(value){
     	this.setState({modalVisible : value});
     };
 
     handleClick(e){
  		if(e.key =='register'){
     		this.setState({current:'register'});
-    		this.setModelVisible(true);
+    		this.setModalVisible(true);
     	}else{
     		this.setState({current:e.key});
     	}
     };
 
-    handleSubmit(e){
+	handleSubmit(e)
+	{
+		//页面开始向 API 进行提交数据
+		e.preventDefault();
+		var myFetchOptions = {
+			method: 'GET'
+		};
+		this.props.form.validateFields((err, values) => {
+      	if (!err) {
+        	console.log('Received values of form: ', values);
+      		}
+    	});
+		var formData= this.props.form.getFieldsValue();
+		//var formData = this.props.form.validateFields();
+		console.log(formData);
+		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=register&username=userName&password=password&r_userName="+formData.r_userName+"&r_password="+formData.r_password+"&r_confirmPassword="+formData.r_comfirmPassword,myFetchOptions).
+		then(response=>response.json()).then(json=>{
+			this.setState({userNickName:json.NickUserName,userid:json.UserId});
 
-    }
+		});
+		message.success("请求成功！");
+		this.setModalVisible(false);
+	};
+
 
     render() {
-        let { getFieldProps } = this.props.form;
+        const { getFieldDecorator } = this.props.form;
         const userShow = this.state.hasLogined ?
             <Menu.Item key="logout" class='register'>
 				<Button type='primary' htmlType=''>{this.state.userNickName}</Button>
@@ -95,19 +117,19 @@ class PCHeader extends React.Component {
 							{userShow}														
 							</Menu>
 								<Modal title='user center' warpClassName='vertical-canter-model' visible={this.state.modalVisible} 
-									onCancel={()=>this.setModelVisible(false)} cancelText='cancel'
-									onOk={()=>this.setModelVisible(false)} okText='closed'>
+									onCancel={()=>this.setModalVisible(false)} cancelText='cancel'
+									onOk={()=>this.setModalVisible(false)} okText='closed'>
 								<Tabs type='card'>
 									<TabPane tab='sign up' key='2'>
 										<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
 											<FormItem label='Account'>
-												<Input placeholder='Please input your account' {...getFieldProps('r_username')}></Input>
+												{getFieldDecorator('r_userName')(<Input placeholder='Please input your account'/>)}
 											</FormItem>											
 											<FormItem label='Password'>
-												<Input type='password' placeholder='Please input your password' {...getFieldProps('r_password')}></Input>
+												 {getFieldDecorator('r_password')(<Input type='password' placeholder='Please input your password'/>)}
 											</FormItem>
 											<FormItem label='Re-enter Password'>
-												<Input type='password' placeholder='Please input your password again' {...getFieldProps('r_comfirmPassword')}></Input>
+												{getFieldDecorator('r_comfirmPassword')(<Input type='password' placeholder='Please input your password again'/>)}
 											</FormItem>
 											<Button type='primary' htmlType='submit'>Sign Up</Button>
 										</Form>
