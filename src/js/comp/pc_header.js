@@ -23,6 +23,13 @@ class PCHeader extends React.Component {
         };
     };
 
+    componentWillMount(){
+    	if(localStorage.userid !=''){
+    		this.setState({hasLogined:true});
+    		this.setState({userNickName:localStorage.userNickName, userid:localStorage.userid});    		
+    	}
+    }
+
     setModalVisible(value){
     	this.setState({modalVisible : value});
     };
@@ -54,7 +61,8 @@ class PCHeader extends React.Component {
 		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action="+this.state.action+"&username="+formData.userName+"&password="+formData.password+"&r_userName="+formData.r_userName+"&r_password="+formData.r_password+"&r_confirmPassword="+formData.r_comfirmPassword,myFetchOptions).
 		then(response=>response.json()).then(json=>{
 			this.setState({userNickName:json.NickUserName,userid:json.UserId});
-
+			localStorage.userid = json.UserId;
+			localStorage.userNickName = json.NickUserName;
 		});
 		if(this.state.action=='login'){
 			this.setState({hasLogined:true});
@@ -71,6 +79,12 @@ class PCHeader extends React.Component {
 			}
 		};
 
+		logout(){
+			localStorage.userid = '';
+			localStorage.userNickName = '';
+			this.setState({hasLogined:false});
+		}
+
     render() {
         const { getFieldDecorator } = this.props.form;
 		const userShow = this.state.hasLogined
@@ -78,13 +92,13 @@ class PCHeader extends React.Component {
 					<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
 					&nbsp;&nbsp;
 					<Link target="_blank">
-						<Button type="dashed" htmlType="button">个人中心</Button>
+						<Button type="dashed" htmlType="button">Profile</Button>
 					</Link>
 					&nbsp;&nbsp;
-					<Button type="ghost" htmlType="button">退出</Button>
+					<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>LogOut</Button>
 				</Menu.Item>
 			: <Menu.Item key="register" class="register">
-				<Icon type="appstore"/>注册/登录
+				<Icon type="appstore"/>Login/SignUp
 			</Menu.Item>;
 
         return (
@@ -99,7 +113,7 @@ class PCHeader extends React.Component {
 						</Col>
 						
 						<Col span={16}>
-							<Menu mode="horizontal" selectedKey={this.state.current} onClick={this.handleClick.bind(this)}>
+							<Menu mode="horizontal" inlineCollapsed={false} selectedKey={this.state.current} onClick={this.handleClick.bind(this)}>
 							<Menu.Item key="top">
 								<Icon type="appstore"/>头条
 							</Menu.Item>
@@ -157,8 +171,6 @@ class PCHeader extends React.Component {
 									</TabPane>
 								</Tabs>
 								</Modal>
-
-
 						</Col>
 						<Col span={2}></Col>
 					</Row>
