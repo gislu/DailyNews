@@ -51,31 +51,41 @@ class PCHeader extends React.Component {
 		var formData= this.props.form.getFieldsValue();
 		//var formData = this.props.form.validateFields();
 		console.log(formData);
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=register&username=userName&password=password&r_userName="+formData.r_userName+"&r_password="+formData.r_password+"&r_confirmPassword="+formData.r_comfirmPassword,myFetchOptions).
+		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action="+this.state.action+"&username="+formData.userName+"&password="+formData.password+"&r_userName="+formData.r_userName+"&r_password="+formData.r_password+"&r_confirmPassword="+formData.r_comfirmPassword,myFetchOptions).
 		then(response=>response.json()).then(json=>{
 			this.setState({userNickName:json.NickUserName,userid:json.UserId});
 
 		});
+		if(this.state.action=='login'){
+			this.setState({hasLogined:true});
+		}
 		message.success("请求成功！");
 		this.setModalVisible(false);
 	};
 
+		callback(key){
+			if(key==1){
+				this.setState({action:'login'});
+			}else if(key==2){
+				this.setState({action:'register'});
+			}
+		};
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const userShow = this.state.hasLogined ?
-            <Menu.Item key="logout" class='register'>
-				<Button type='primary' htmlType=''>{this.state.userNickName}</Button>
-				&nbsp;&nbsp;
-				<Link target='_blank'>
-					<Button type='dashed' htmlType='button'>Personal Profile</Button>
-				</Link>
-				&nbsp;&nbsp;
-				<Button type='ghost' htmlType='button'>Log out</Button>
-			</Menu.Item> :
-            <Menu.Item key="register" class='register'>
-				<Icon type='appstore'></Icon> Sign in/Sign Up
-				</Menu.Item>;
+		const userShow = this.state.hasLogined
+			? <Menu.Item key="logout" class="register">
+					<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
+					&nbsp;&nbsp;
+					<Link target="_blank">
+						<Button type="dashed" htmlType="button">个人中心</Button>
+					</Link>
+					&nbsp;&nbsp;
+					<Button type="ghost" htmlType="button">退出</Button>
+				</Menu.Item>
+			: <Menu.Item key="register" class="register">
+				<Icon type="appstore"/>注册/登录
+			</Menu.Item>;
 
         return (
             <header>
@@ -119,8 +129,19 @@ class PCHeader extends React.Component {
 								<Modal title='user center' warpClassName='vertical-canter-model' visible={this.state.modalVisible} 
 									onCancel={()=>this.setModalVisible(false)} cancelText='cancel'
 									onOk={()=>this.setModalVisible(false)} okText='closed'>
-								<Tabs type='card'>
-									<TabPane tab='sign up' key='2'>
+								<Tabs type='card' onChange={this.callback.bind(this)}>
+									<TabPane tab='login' key='1'>
+										<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+											<FormItem label='Account'>
+												{getFieldDecorator('userName')(<Input placeholder='Please input your account'/>)}
+											</FormItem>											
+											<FormItem label='Password'>
+												 {getFieldDecorator('password')(<Input type='password' placeholder='Please input your password'/>)}
+											</FormItem>
+											<Button type='primary' htmlType='submit'>Login</Button>
+										</Form>
+									</TabPane>
+									<TabPane tab='sign_up' key='2'>
 										<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
 											<FormItem label='Account'>
 												{getFieldDecorator('r_userName')(<Input placeholder='Please input your account'/>)}
