@@ -86,3 +86,22 @@
     padding: 15px !important;
 }
 
+
+/*image block******START*****/
+.imageblock {
+    float: left;
+}
+
+.custom-card {
+    padding: 5px;
+}
+
+.custom-card p {
+    color: #999;
+}
+
+.register{
+  float: right !important;
+}
+
+/*image block******END*****/

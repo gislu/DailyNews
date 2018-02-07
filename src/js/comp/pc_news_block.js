@@ -30,7 +30,7 @@ export default class PCNewsBlock extends React.Component{
 				</Link>
 			</li>
 			))
-		:'no news loaded!'
+		:'Loadding News...'
 		return(
 			<div class='topNewsList'>
 				<Card>
