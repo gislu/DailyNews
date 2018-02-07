@@ -113,7 +113,7 @@ class PCHeader extends React.Component {
 						</Col>
 						
 						<Col span={16}>
-							<Menu mode="horizontal" inlineCollapsed={false} selectedKey={this.state.current} onClick={this.handleClick.bind(this)}>
+							<Menu mode="horizontal" selectedKey={this.state.current} onClick={this.handleClick.bind(this)}>
 							<Menu.Item key="top">
 								<Icon type="appstore"/>头条
 							</Menu.Item>

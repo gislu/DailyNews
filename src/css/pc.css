@@ -25,3 +25,64 @@
 {
   display: inline-block !important;
 }
+
+.container{
+	padding-top: 15px;
+}
+
+.leftContainer{
+	width: 400px;
+	float:left;
+}
+
+.carousel{
+	width: 400px;
+	float:left;
+}
+
+
+.topNewsList {
+    float: left;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.topNewsList a {
+    line-height: 22px !important;
+    color: #666 !important;
+}
+
+
+.tab_news {
+    padding-left: 10px;
+    width: 460px;
+    float: left;
+}
+
+
+.tab_news li {
+    height: 27px;
+    line-height: 27px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 417px;
+    float: left;
+    text-overflow: ellipsis;
+}
+
+
+
+.clearfix{
+  margin-top: 20px;
+}
+
+.ant-tabs-bar {
+    margin-bottom: 0 !important;
+}
+
+.ant-card-body {
+    padding: 15px !important;
+}
+
