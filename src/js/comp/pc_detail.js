@@ -1,10 +1,6 @@
 import React from 'react';
-
 import { Row, Col, Manu } from 'antd';
-import { Menu, Icon, Tabs, Carousel} from 'antd';
-import PCNewsBlock from './pc_news_block';
-import PCNewsImgBlock from './pc_news_img_block';
-const TabPane = Tabs.TabPane;
+
 
 export default class PCNewsDetails extends React.Component {
 		
@@ -25,8 +21,8 @@ export default class PCNewsDetails extends React.Component {
 		})
 	};
 
-	createMark(){
-		return {_html:this.state.newsItem.pagecontent};
+	createMarkup(){
+		return {__html: this.state.newsItem.pagecontent};
 	};
 	
 	render(){
@@ -36,9 +32,7 @@ export default class PCNewsDetails extends React.Component {
 				<Row>
 					<Col span={2}></Col>
 					<Col span={14} className='container'>
-						<div class='articleContainer' dangerouslySetInnerHTML={this.createMark.bind(this)}>
-							
-						</div>
+						<div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
 					</Col>
 					<Col span={6}></Col>
 					<Col span={2}></Col>
