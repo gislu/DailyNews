@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import PCIndex from './comp/pc_index'
 import MobileIndex from './comp/mobile_index';
 import PCNewsDetails from './comp/pc_detail';
+import MobileNewsDetails from './comp/mobile_detail';
  
 
 export default class Root extends React.Component{
@@ -23,7 +24,10 @@ export default class Root extends React.Component{
       	</MediaQuery>
 
       	<MediaQuery query='(max-device-width:1224px)'>
-      	<MobileIndex/>
+        <Router history={hashHistory}>
+            <Route path="/" component={MobileIndex}></Route>
+            <Route path="/details/:uniquekey" component={MobileNewsDetails}></Route>
+          </Router>
       	</MediaQuery>
     </div>
     );

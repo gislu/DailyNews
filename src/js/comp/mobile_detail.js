@@ -1,11 +1,11 @@
 import React from 'react';
 import { Row, Col, Manu, BackTop } from 'antd';
-import PCHeader from './pc_header';
-import PCFooter from './pc_footer';
+import MobileHeader from './mobile_header';
+import MobileFooter from './mobile_footer';
 import PCNewsImgBlock from './pc_news_img_block';
 import CommonComments from './common_commits'
 
-export default class PCNewsDetails extends React.Component {
+export default class MobileNewsDetails extends React.Component {
 		
 	constructor(){
 		super();
@@ -31,22 +31,17 @@ export default class PCNewsDetails extends React.Component {
 	render(){
 
 		return(
-			<div>
-				<PCHeader></PCHeader>
+			<div id='mobileDetailContainer'>
+				<MobileHeader></MobileHeader>
+				<div class='ucmobileList'></div>
 				<Row>
-					<Col span={2}>
-					</Col>
-					<Col span={14} className='container'>
+					<Col span={24} className='container'>
 						<div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
+						<hr/>
 						<CommonComments uniquekey={this.props.params.uniquekey}></CommonComments>
 					</Col>
-					<Col span={6}>
-						<PCNewsImgBlock count={30} type='top' width='100%' cardTitle='RelatedNews' imageWidth='150px'></PCNewsImgBlock>
-					</Col>
-					<Col span={2}>
-					</Col>
 				</Row>
-				<PCFooter></PCFooter>
+				<MobileFooter></MobileFooter>
 				<BackTop></BackTop>
 			</div>
 
