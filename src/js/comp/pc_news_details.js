@@ -1,58 +1,47 @@
 import React from 'react';
-import { Row, Col, Manu, BackTop } from 'antd';
+import {Row, Col, BackTop} from 'antd';
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';
-import PCNewsImgBlock from './pc_news_img_block';
-import CommonComments from './common_commits'
-
+import PCNewsImageBlock from './pc_news_image_block';
+import CommonComments from './common_comments';
 export default class PCNewsDetails extends React.Component {
-		
-	constructor(){
+	constructor() {
 		super();
-		this.state={
-			newsItem:''
+		this.state = {
+			newsItem: ''
 		};
 	};
-
 	componentDidMount() {
 		var myFetchOptions = {
 			method: 'GET'
 		};
 		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + this.props.params.uniquekey, myFetchOptions).then(response => response.json()).then(json => {
 			this.setState({newsItem: json});
-			document.title = this.state.newsItem.title + " - React News | Lu's News Demo";
-		})
+			document.title = this.state.newsItem.title + " - React News | React 驱动的新闻平台";
+		});
 	};
-
-	createMarkup(){
+	createMarkup() {
 		return {__html: this.state.newsItem.pagecontent};
 	};
-	
-	render(){
-
-		return(
+	render() {
+		return (
 			<div>
 				<PCHeader></PCHeader>
 				<Row>
-					<Col span={2}>
-					</Col>
-					<Col span={14} className='container'>
+					<Col span={2}></Col>
+					<Col span={14} className="container">
 						<div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
-						<CommonComments uniquekey={this.props.params.uniquekey}></CommonComments>
+						<hr/>
+						<CommonComments uniquekey={this.props.params.uniquekey}/>
 					</Col>
 					<Col span={6}>
-						<PCNewsImgBlock count={30} type='top' width='100%' cardTitle='RelatedNews' imageWidth='150px'></PCNewsImgBlock>
+						<PCNewsImageBlock count={40} type="top" width="100%" cardTitle="相关新闻" imageWidth="150px"/>
 					</Col>
-					<Col span={2}>
-					</Col>
+					<Col span={2}></Col>
 				</Row>
 				<PCFooter></PCFooter>
-				<BackTop></BackTop>
+				<BackTop/>
 			</div>
-
-
-
-			);
-	}
-
+		);
+	};
 }
