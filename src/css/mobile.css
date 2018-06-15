@@ -16,9 +16,6 @@ html{
   height: 50px;
 }
 
-#mobileheader header img{
-  height: 50px;
-}
 #mobileheader header span{
   font-size: 35px;
   vertical-align: top;
@@ -27,11 +24,20 @@ html{
 }
 
 #mobileheader i{
-	font-size: 0.5rem;
-	float: right;
-	margin-right: 0.3rem;
-	margin-top: 0.3rem;
-	color: #2db7f5;
+  font-size: 0.5rem;
+  float: right;
+  margin-right: 0.3rem;
+  margin-top: 0.3rem;
+  color:#2db7f5;
+}
+
+#mobileheader ul li{
+  font-size: 30px;
+}
+
+#mobileheader .slick-list img{
+  height: 220px;
+  width:100%;
 }
 
 #mobileDetailsContainer .title,.article-title .title {
@@ -51,7 +57,20 @@ html{
 }
 
 .ucmobileList{
-  margin-top: 10px;
+  margin-top: 60px;
+}
+
+
+.topbar{text-align: left !important; margin-bottom: 10px;background: #2db7f5;display:block;font-size:.32rem;max-width:1080px;height:.98rem;line-height:.98rem;padding:0 0 0 10px;box-sizing:border-box;font-size:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:fixed;width:7.5rem;z-index:10000;top:0}
+.topbar,.topbar a{color:#fff}
+.topbar img{width: 50px;}
+.topbar span{
+  display: inline-block;
+  width: 80px;
+  height: 50px;
+  vertical-align: top;
+  font-size: 0.5rem;
+  padding-left: 10px;
 }
 
 section{background:#f6f6f6;width:6.9rem}

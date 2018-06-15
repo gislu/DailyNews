@@ -6,8 +6,10 @@ import MediaQuery from 'react-responsive';
 import 'antd/dist/antd.css';
 import PCIndex from './comp/pc_index'
 import MobileIndex from './comp/mobile_index';
-import PCNewsDetails from './comp/pc_detail';
-import MobileNewsDetails from './comp/mobile_detail';
+import PCNewsDetails from './comp/pc_news_details';
+import PCUserCenter from './comp/pc_usercenter';
+import MobileUserCenter from './comp/mobile_usercenter';
+import MobileNewsDetails from './comp/mobile_news_details';
  
 
 export default class Root extends React.Component{
@@ -19,6 +21,7 @@ export default class Root extends React.Component{
           <Router history={hashHistory}>
             <Route path="/" component={PCIndex}></Route>
             <Route path="/details/:uniquekey" component={PCNewsDetails}></Route>
+            <Route path="/usercenter" component={PCUserCenter}></Route>
           </Router>
       	
       	</MediaQuery>
@@ -27,6 +30,7 @@ export default class Root extends React.Component{
         <Router history={hashHistory}>
             <Route path="/" component={MobileIndex}></Route>
             <Route path="/details/:uniquekey" component={MobileNewsDetails}></Route>
+            <Route path="/usercenter" component={MobileUserCenter}></Route>
           </Router>
       	</MediaQuery>
     </div>
