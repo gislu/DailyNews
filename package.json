@@ -24,6 +24,7 @@
     "style-loader": "^0.13.1",
     "react-responsive": "^1.2.1",
     "react-touch-loader": "^1.1.0",
+    "react-pull-to-refresh": "^1.0.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1",
     "babel-loader": "^6.3.2"
