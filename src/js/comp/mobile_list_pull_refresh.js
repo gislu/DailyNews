@@ -2,11 +2,17 @@ import React from 'react';
 import {Row,Col} from 'antd';
 import {Router, Route, Link, browserHistory} from 'react-router'
 import ReactPullToRefresh from 'react-pull-to-refresh';
+import Tloader from 'react-touch-loader';
 export default class MobileList extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			news: ''
+			news: '',
+			count: 5,
+			canRefreshResolve: 1,
+      hasMore: 0,
+      initializing: 1,
+      refreshedAt: Date.now()
 		};
 	};
 	componentWillMount() {
@@ -15,6 +21,15 @@ export default class MobileList extends React.Component {
 		};
 		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions).then(response => response.json()).then(json => this.setState({news: json}));
 	};
+
+	componentDidMount() {
+		setTimeout(() => {
+				this.setState({
+						hasMore: 1,
+						initializing: 2, // initialized
+				});
+		}, 2e3);
+};
 
 	handleRefresh(resolve, reject){
 		var myFetchOptions = {
@@ -25,8 +40,36 @@ export default class MobileList extends React.Component {
 			resolve();
 		});
 	};
+	loadMore(resolve){
+		setTimeout(() => {
+			var count = this.state.count;
+			this.setState({
+					count: count+5,
+			});
+
+			var myFetchOptions = {
+				method: 'GET'
+			};
+			fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count="+this.state.count, myFetchOptions).then(response => response.json()).then(json => this.setState({news: json}));
+
+			this.setState({
+					hasMore: count>0 && count<50
+			});
+
+			resolve();
+		}, 2e3);
+};
+
+toggleCanReresh() {
+	this.setState({ canRefreshResolve: !this.state.canRefreshResolve});
+};
+
 
 	render() {
+		var { hasMore, initializing, refreshedAt, canRefreshResolve } = this.state;
+		var { refresh, loadMore, toggleCanReresh } = this;
+		console.log(typeof(refresh));
+
 	  const {news} = this.state;
 		const newsList = news.length
 			? news.map((newsItem, index) => (
@@ -54,11 +97,11 @@ export default class MobileList extends React.Component {
 			 <div className="view">
 				 <Row>
 					 <Col span={24}>
-						 <ReactPullToRefresh onRefresh={this.handleRefresh.bind(this)} sytle={{textAlign: 'center'}}>
+						 <ReactPullToRefresh onRefresh={this.handleRefresh.bind(this)}>
 						 <span className="genericon genericon-next"></span>
-						 		<div>
-									{newsList}
-								</div>
+						 <Tloader className="main" autoLoadMore={true} onRefresh={refresh} onLoadMore={this.loadMore.bind(this)} hasMore={hasMore} initializing={initializing}>
+						 		{newsList}
+						 </Tloader>
 						 </ReactPullToRefresh>
 	         </Col>
          </Row>
