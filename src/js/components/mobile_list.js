@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row,Col} from 'antd';
-import {Router, Route, Link, browserHistory} from 'react-router'
+import {Link} from 'react-router-dom';
 export default class MobileList extends React.Component {
 	constructor() {
 		super();

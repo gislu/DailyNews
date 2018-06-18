@@ -26,7 +26,7 @@ export default class Root extends React.Component {
 				<MediaQuery query='(max-device-width: 1224px)'>
 					<BrowserRouter>
 						<Switch>
-							<Route path="/" component={MobileIndex}></Route>
+							<Route exact path="/" component={MobileIndex}></Route>
 							<Route path="/details/:uniquekey" component={MobileNewsDetails}></Route>
 							<Route path="/usercenter" component={MobileUserCenter}></Route>
 						</Switch>
