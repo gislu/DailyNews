@@ -1,14 +1,17 @@
-var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
-const BabiliPlugin = require("babili-webpack-plugin");
 
 module.exports = {
   devServer: {
     historyApiFallback: true,
   },
+  // externals: {
+  //   "antd": 'antd',
+  //   "react": "React" ,
+  //   "react-dom": "ReactDOM"
+  // },
   context: path.join(__dirname),
-  devtool: debug ? "inline-sourcemap" : null,
+  devtool: false, //update: null
   entry: "./src/js/root.js",
   module: {
     loaders: [
@@ -21,18 +24,26 @@ module.exports = {
           plugins: ['react-html-attrs'], //添加组件的插件配置
         }
       },
-      //下面是使用 ant-design 的配置文件
-      { test: /\.css$/, loader: 'style-loader!css-loader' }
+      { 
+        test: /\.css$/, 
+        loader: 'style-loader!css-loader'
+      }
     ]
   },
   output: {
     path: __dirname,
     filename: "./src/bundle.js"
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    new BabiliPlugin(),
-  ],
+  plugins: [
+    //update: new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(), //update: https://github.com/webpack/webpack/issues/1964
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.UglifyJsPlugin({minimize:true, mangle: false, sourcemap: false,
+      compress: {
+        warnings: false
+      }
+    }),
+    //update: 把入口文件vendors数组指定的第三方包打包成verdors.js
+    //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: './vendor.bundle.js' }),//name: 'vendor', filename: './vendor.bundle.js'
+  ]
 };
