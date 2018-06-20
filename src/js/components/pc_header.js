@@ -66,21 +66,27 @@ class PCHeader extends React.Component {
 		+ formData.r_confirmPassword, myFetchOptions)
 		.then(response => response.json())
 		.then(json => {
-			console.log('login json is :' + json);
-			this.setState({userNickName: json.NickUserName, userid: json.UserId});
-			localStorage.userid= json.UserId;
-			localStorage.userNickName = json.NickUserName;
+			console.log("json is :" + JSON.stringify(json));
+			if(JSON.stringify(json) == "null"){
+				message.warn("Sorry,username/password is wrong!");
+				setTimeout(() => {
+					window.location.reload();
+				}, 1500);
+			}else if(JSON.stringify(json)=="true"){
+				message.success("sign-in successful! Please login!");
+				setTimeout(() => {
+					window.location.reload();
+				}, 1500);
+			}else{
+				this.setState({userNickName: json.NickUserName, userid: json.UserId});
+				localStorage.userid= json.UserId;
+				localStorage.userNickName = json.NickUserName;
+				message.success("login successful!");
+			}
 		});
 		if (this.state.action=="login") {
 			this.setState({hasLogined:true});
-			message.success("login successful!");
-		}else if(this.state.action=="register"){
-			console.log('its sign in' + response + formData.userName);
-			this.setState({userNickName: formData.userName});
-			localStorage.userNickName = formData.userName;
-			message.success("sign-in successful!");
 		}
-		
 		this.setModalVisible(false);
 	};
 	callback(key) {
@@ -99,10 +105,9 @@ class PCHeader extends React.Component {
 		const { getFieldDecorator } = this.props.form;
 		const userShow = this.state.hasLogined
 			? <Menu.Item key="logout" class="register">
-					<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
 					&nbsp;&nbsp;
 					<Link target="_blank" to={`/usercenter`}>
-						<Button type="dashed" htmlType="button">Account</Button>
+					<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
 					</Link>
 					&nbsp;&nbsp;
 					<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>LogOut</Button>
@@ -125,11 +130,14 @@ class PCHeader extends React.Component {
 							<Menu.Item key="top">
 								<Icon type="appstore"/>Headline
 							</Menu.Item>
-							<Menu.Item key="guoji">
+							<Menu.Item key="guonei">
 								<Icon type="appstore"/>U.S.
 							</Menu.Item>
-							<Menu.Item key="yule">
+							<Menu.Item key="guoji">
 								<Icon type="appstore"/>WORLD
+							</Menu.Item>
+							<Menu.Item key="yule">
+								<Icon type="appstore"/>ENTERTAINMENT
 							</Menu.Item>
 							<Menu.Item key="tiyu">
 								<Icon type="appstore"/>Sports
