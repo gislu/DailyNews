@@ -139,9 +139,6 @@ class PCHeader extends React.Component {
 							<Menu.Item key="yule">
 								<Icon type="appstore"/>ENTERTAINMENT
 							</Menu.Item>
-							<Menu.Item key="tiyu">
-								<Icon type="appstore"/>Sports
-							</Menu.Item>
 							<Menu.Item key="keji">
 								<Icon type="appstore"/>TECH
 							</Menu.Item>

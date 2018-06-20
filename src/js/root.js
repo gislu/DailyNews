@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, BrowserRouter,Switch} from 'react-router-dom';
-import Button from 'antd/lib/button';
 import PCIndex from './components/pc_index';
 import PCNewsDetails from './components/pc_news_details';
 import MobileNewsDetails from './components/mobile_news_details';
@@ -10,10 +9,14 @@ import PCUserCenter from './components/pc_usercenter';
 import MobileUserCenter from './components/mobile_usercenter';
 import 'antd/dist/antd.css';
 import MediaQuery from 'react-responsive';
+import { LocaleProvider } from 'antd';
+import en_GB from 'antd/lib/locale-provider/en_GB';
 
 export default class Root extends React.Component {
 	render() {
 		return (
+			
+			<LocaleProvider locale={en_GB}>
 			<div>
 				<MediaQuery query='(min-device-width: 1224px)'>
 					<BrowserRouter>
@@ -34,6 +37,8 @@ export default class Root extends React.Component {
 					</BrowserRouter>
 				</MediaQuery>
 			</div>
+			</LocaleProvider>
+			
 		);
 	};
 }
