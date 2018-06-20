@@ -57,7 +57,7 @@ class CommonComments extends React.Component {
 		const {comments} = this.state;
 		const commnetList = comments.length
 			? comments.map((comment, index) => (
-				<Card key={index} title={comment.UserName} extra={< a href = "#" > 发布于 {comment.datetime} < /a>}>
+				<Card key={index} title={comment.UserName} extra={< a href = "#" > 发布于 {comment.datetime} </a>}>
 					<p>{comment.Comments}</p>
 				</Card>
 			))
