@@ -66,14 +66,21 @@ class PCHeader extends React.Component {
 		+ formData.r_confirmPassword, myFetchOptions)
 		.then(response => response.json())
 		.then(json => {
+			console.log('login json is :' + json);
 			this.setState({userNickName: json.NickUserName, userid: json.UserId});
 			localStorage.userid= json.UserId;
 			localStorage.userNickName = json.NickUserName;
 		});
 		if (this.state.action=="login") {
 			this.setState({hasLogined:true});
+			message.success("login successful!");
+		}else if(this.state.action=="register"){
+			console.log('its sign in' + response + formData.userName);
+			this.setState({userNickName: formData.userName});
+			localStorage.userNickName = formData.userName;
+			message.success("sign-in successful!");
 		}
-		message.success("请求成功！");
+		
 		this.setModalVisible(false);
 	};
 	callback(key) {
@@ -95,13 +102,13 @@ class PCHeader extends React.Component {
 					<Button type="primary" htmlType="button">{this.state.userNickName}</Button>
 					&nbsp;&nbsp;
 					<Link target="_blank" to={`/usercenter`}>
-						<Button type="dashed" htmlType="button">个人中心</Button>
+						<Button type="dashed" htmlType="button">Account</Button>
 					</Link>
 					&nbsp;&nbsp;
-					<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>退出</Button>
+					<Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>LogOut</Button>
 				</Menu.Item>
 			: <Menu.Item key="register" class="register">
-				<Icon type="appstore"/>注册/登录
+				<Icon type="appstore"/>Register/Login
 			</Menu.Item>;
 		return (
 			<header>
@@ -116,56 +123,52 @@ class PCHeader extends React.Component {
 					<Col span={16}>
 						<Menu mode="horizontal" onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]}>
 							<Menu.Item key="top">
-								<Icon type="appstore"/>头条
-							</Menu.Item>
-							<Menu.Item key="shehui">
-								<Icon type="appstore"/>社会
-							</Menu.Item>
-							<Menu.Item key="guonei">
-								<Icon type="appstore"/>国内
+								<Icon type="appstore"/>Headline
 							</Menu.Item>
 							<Menu.Item key="guoji">
-								<Icon type="appstore"/>国际
+								<Icon type="appstore"/>U.S.
 							</Menu.Item>
 							<Menu.Item key="yule">
-								<Icon type="appstore"/>娱乐
+								<Icon type="appstore"/>WORLD
 							</Menu.Item>
 							<Menu.Item key="tiyu">
-								<Icon type="appstore"/>体育
+								<Icon type="appstore"/>Sports
 							</Menu.Item>
 							<Menu.Item key="keji">
-								<Icon type="appstore"/>科技
-							</Menu.Item>
-							<Menu.Item key="shishang">
-								<Icon type="appstore"/>时尚
+								<Icon type="appstore"/>TECH
 							</Menu.Item>
 							{userShow}
 						</Menu>
-						<Modal title="用户中心" wrapClassName="vertical-center-modal" visible={this.state.modalVisible} onCancel= {()=>this.setModalVisible(false)} onOk={() => this.setModalVisible(false)} okText="关闭">
+						<Modal title="UserCenter" wrapClassName="vertical-center-modal" visible={this.state.modalVisible} onCancel= {()=>this.setModalVisible(false)} onOk={() => this.setModalVisible(false)} okText="Close">
 							<Tabs type="card" onChange={this.callback.bind(this)}>
-								<TabPane tab="登录" key="1">
-									<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
-										<FormItem label="账户">
-											{getFieldDecorator('userName')(<Input placeholder="请输入您的账号" />)}
+								<TabPane tab="Login" key="1">
+									<Form layout="horizontal" onSubmit={this.handleSubmit.bind(this)}>
+										<FormItem label="Accound">
+											{getFieldDecorator('userName',{rules: [{required: true, message: 'Please input your username!',}],})
+											(<Input placeholder="*Account" />)}
 										</FormItem>
-										<FormItem label="密码">
-											{getFieldDecorator('password')(<Input type="password" placeholder="请输入您的密码" />)}
+										<FormItem label="Password">
+											{getFieldDecorator('password',{rules: [{required: true, message: 'Please input your password!',}],})
+											(<Input type="password" placeholder="*Passowrd" />)}
 										</FormItem>
-										<Button type="primary" htmlType="submit">登录</Button>
+										<Button type="primary" htmlType="submit">Login</Button>
 									</Form>
 								</TabPane>
-								<TabPane tab="注册" key="2">
-									<Form horizontal onSubmit={this.handleSubmit.bind(this)}>
-										<FormItem label="账户">
-											{getFieldDecorator('r_userName')(<Input placeholder="请输入您的账号"/>)}
+								<TabPane tab="SignUp" key="2">
+									<Form layout="horizontal" onSubmit={this.handleSubmit.bind(this)}>
+										<FormItem label="Account">
+											{getFieldDecorator('r_userName',{rules: [{required: true, message: 'Please input your username!',}],})
+											(<Input placeholder="*Account"/>)}
 										</FormItem>
-										<FormItem label="密码">
-											{getFieldDecorator('r_password')(<Input type="password" placeholder="请输入您的密码" />)}
+										<FormItem label="Password">
+										{getFieldDecorator('r_password',{rules: [{required: true, message: 'Please input your username!',}],})
+											(<Input type="password" placeholder="*Passowrd" />)}
 										</FormItem>
-										<FormItem label="确认密码">
-											{getFieldDecorator('r_confirmPassword')(<Input type="password" placeholder="请再次输入您的密码" />)}
+										<FormItem label="Re-Enter Password">
+											{getFieldDecorator('r_confirmPassword',{rules: [{required: true, message: 'Please input your username!',}],})
+											(<Input type="password" placeholder="*Re-Passowrd" />)}
 										</FormItem>
-										<Button type="primary" htmlType="submit">注册</Button>
+										<Button type="primary" htmlType="submit">SignUp</Button>
 									</Form>
 								</TabPane>
 							</Tabs>

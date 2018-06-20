@@ -10,6 +10,7 @@ import PCUserCenter from './components/pc_usercenter';
 import MobileUserCenter from './components/mobile_usercenter';
 import 'antd/dist/antd.css';
 import MediaQuery from 'react-responsive';
+
 export default class Root extends React.Component {
 	render() {
 		return (
