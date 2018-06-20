@@ -100,6 +100,7 @@ class PCHeader extends React.Component {
 		localStorage.userid= '';
 		localStorage.userNickName = '';
 		this.setState({hasLogined:false});
+		message.success("you have already logout!");
 	};
 	render() {
 		const { getFieldDecorator } = this.props.form;

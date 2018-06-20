@@ -50,6 +50,7 @@ class MobileHeader extends React.Component {
 		localStorage.userid= '';
 		localStorage.userNickName = '';
 		this.setState({hasLogined:false});
+		message.success("you have already logout!");
 	};
 	handleSubmit(e)
 	{
@@ -103,17 +104,19 @@ class MobileHeader extends React.Component {
 	render() {
 		const { getFieldDecorator } = this.props.form;
 		const userShow = this.state.hasLogined
-			? 
-			<Link to={`/usercenter`}>
-					<Icon type="inbox"/>
+			?<span>
+				<Icon type="user-delete" onClick={this.logout.bind(this)}/>
+				<Link to={`/usercenter`}>
+					<Icon type="user"/>
 				</Link>
-				: <Icon type="setting" onClick={this.login.bind(this)}/>
+				</span>
+				: <Icon type="login" onClick={this.login.bind(this)}/>
 		return (
 			<div id="mobileheader">
 				<header>
 					<a href="/">
 						<img src="/src/images/logo.png" alt="logo"/>
-						<span>ReactNews</span>
+						<span>DailyNews</span>
 					</a>
 					{userShow}
 				</header>
