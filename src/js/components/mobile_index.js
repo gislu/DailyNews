@@ -17,7 +17,7 @@ export default class MobileIndex extends React.Component {
 			<div>
 				<MobileHeader></MobileHeader>
 				<Tabs>
-					<TabPane tab="头条" key="1">
+					<TabPane tab="HeadLines" key="1">
 						<div class="carousel">
 							<Carousel {...settings}>
 								<div><img src="./src/images/carousel_1.jpg"/></div>
@@ -28,16 +28,16 @@ export default class MobileIndex extends React.Component {
 						</div>
 						<MobileList count={20} type="top"/>
 					</TabPane>
-					<TabPane tab="社会" key="2">
-						<MobileList count={20} type="shehui"/>
-					</TabPane>
-					<TabPane tab="国内" key="3">
+					<TabPane tab="U.S." key="2">
 						<MobileList count={20} type="guonei"/>
 					</TabPane>
-					<TabPane tab="国际" key="4">
+					<TabPane tab="Sports" key="3">
+						<MobileList count={20} type="shehui"/>
+					</TabPane>
+					<TabPane tab="World" key="4">
 						<MobileList count={20} type="guoji"/>
 					</TabPane>
-					<TabPane tab="娱乐" key="5">
+					<TabPane tab="Entertainment" key="5">
 						<MobileList count={20} type="yule"/>
 					</TabPane>
 				</Tabs>

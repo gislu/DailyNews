@@ -37,7 +37,7 @@ export default class MobileList extends React.Component {
           </Link>
         </section>
 			))
-			: '没有加载到任何新闻';
+			: 'Loading....';
 		return (
 			<div>
 				 <Row>

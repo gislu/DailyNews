@@ -24,7 +24,7 @@ export default class PCNewsBlock extends React.Component {
 					</Link>
 				</li>
 			))
-			: '没有加载到任何新闻';
+			: 'Loading.....';
 		return (
 			<div class="topNewsList">
 				<Card>

@@ -41,7 +41,7 @@ export default class PCNewsImageBlock extends React.Component {
 					</Link>
 				</div>
 			))
-			: '没有加载到任何新闻';
+			: 'Loading....';
 		return (
 			<div class="topNewsList">
 				<Card title={this.props.cartTitle} bordered={true} style={{
