@@ -6,12 +6,18 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 import {
 	Tabs,
+	message,
 	Form,
+	Input,
+	Button,
+	Checkbox,
 	Card,
+	notification,
 	Upload
 } from 'antd';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
+import {Router, Route, Link, browserHistory} from 'react-router'
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';
 export default class PCUserCenter extends React.Component {
@@ -66,21 +72,21 @@ export default class PCUserCenter extends React.Component {
 		const {usercollection,usercomments} = this.state;
 		const usercollectionList = usercollection.length ?
 		usercollection.map((uc,index)=>(
-				<Card key={index} title={uc.uniquekey} extra={<a href={`/details/${uc.uniquekey}`}>View</a>}>
+				<Card key={index} title={uc.uniquekey} extra={<a target="_blank" href={`/#/details/${uc.uniquekey}`}>查看</a>}>
 					<p>{uc.Title}</p>
 				</Card>
 		))
 		:
-		"You don't have any news in collections so far : (";
+		'您还没有收藏任何的新闻，快去收藏一些新闻吧。';
 
 		const usercommentsList = usercomments.length ?
 		usercomments.map((comment,index)=>(
-				<Card key={index} title={`you commented ${comment.uniquekey} at ${comment.datetime}`} extra={<a href={`/details/${comment.uniquekey}`}>View</a>}>
+				<Card key={index} title={`于 ${comment.datetime} 评论了文章 ${comment.uniquekey}`} extra={<a target="_blank" href={`/#/details/${comment.uniquekey}`}>查看</a>}>
 					<p>{comment.Comments}</p>
 				</Card>
 		))
 		:
-		"You don't have any comment so far : (";
+		'您还没有发表过任何评论。';
 
 		return (
 			<div>
@@ -89,7 +95,7 @@ export default class PCUserCenter extends React.Component {
 					<Col span={2}></Col>
 					<Col span={20}>
 						<Tabs>
-							<TabPane tab="My Collections" key="1">
+							<TabPane tab="我的收藏列表" key="1">
 								<div class="comment">
 									<Row>
 										<Col span={24}>
@@ -98,7 +104,7 @@ export default class PCUserCenter extends React.Component {
 									</Row>
 								</div>
 							</TabPane>
-							<TabPane tab="My Comments" key="2">
+							<TabPane tab="我的评论列表" key="2">
 							<div class="comment">
 								<Row>
 									<Col span={24}>
@@ -107,14 +113,14 @@ export default class PCUserCenter extends React.Component {
 								</Row>
 							</div>
 							</TabPane>
-							<TabPane tab="Profile Photo" key="3">
+							<TabPane tab="头像设置" key="3">
 								<div class="clearfix">
 									<Upload {...props}>
 										<Icon type="plus"/>
-										<div className="ant-upload-text">Upload</div>
+										<div className="ant-upload-text">上传照片</div>
 									</Upload>
 									<Modal visible ={this.state.previewVisible} footer={null} onCancel={this.handleCancel}>
-										<img alt="Preview" src={this.state.previewImage}/>
+										<img alt="预览" src={this.state.previewImage}/>
 									</Modal>
 								</div>
 							</TabPane>

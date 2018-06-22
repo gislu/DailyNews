@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row,Col} from 'antd';
-import {Link} from 'react-router-dom';
+import {Router, Route, Link, browserHistory} from 'react-router'
 export default class MobileList extends React.Component {
 	constructor() {
 		super();
@@ -37,7 +37,7 @@ export default class MobileList extends React.Component {
           </Link>
         </section>
 			))
-			: 'Loading....';
+			: '没有加载到任何新闻';
 		return (
 			<div>
 				 <Row>

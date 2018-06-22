@@ -17,10 +17,9 @@ export default class PCNewsDetails extends React.Component {
 		};
 		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + this.props.match.params.uniquekey, myFetchOptions).then(response => response.json()).then(json => {
 			this.setState({newsItem: json});
-			document.title = this.state.newsItem.title + " - Daily News | Base on React";
-		})
+			document.title = this.state.newsItem.title + " - React News | React 驱动的新闻平台";
+		});
 	};
-
 	createMarkup() {
 		return {__html: this.state.newsItem.pagecontent};
 	};
@@ -33,10 +32,10 @@ export default class PCNewsDetails extends React.Component {
 					<Col span={14} className="container">
 						<div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
 						<hr/>
-							<CommonComments uniquekey={this.props.match.params.uniquekey}/>
+						<CommonComments uniquekey={this.props.match.params.uniquekey}/>
 					</Col>
 					<Col span={6}>
-						<PCNewsImageBlock count={40} type="top" width="100%" cardTitle="Related News" imageWidth="150px"/>
+						<PCNewsImageBlock count={40} type="top" width="100%" cardTitle="相关新闻" imageWidth="150px"/>
 					</Col>
 					<Col span={2}></Col>
 				</Row>
