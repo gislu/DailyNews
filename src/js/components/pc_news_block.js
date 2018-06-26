@@ -5,7 +5,8 @@ export default class PCNewsBlock extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			news: ''
+			news: '',
+			newsapi:''
 		};
 	}
 	componentWillMount() {
@@ -19,10 +20,9 @@ export default class PCNewsBlock extends React.Component {
 			category: 'technology',
 			language: 'en',
 			country: 'us'
-		  }).then(response => {
-			console.log(response);
-			this.setState({news:response.json()});
-		});
+		  }).then(response =>{
+			console.log(response);  
+			this.setState({newsapi:response})});
 	};
 	render() {
 		const {news} = this.state;
