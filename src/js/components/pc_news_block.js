@@ -13,6 +13,16 @@ export default class PCNewsBlock extends React.Component {
 			method: 'GET'
 		};
 		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions).then(response => response.json()).then(json => this.setState({news: json}));
+		const NewsAPI = require('newsapi');
+		const newsapi = new NewsAPI('8611169f68f94d8582ac555bf7173ec4');
+		newsapi.v2.sources({
+			category: 'technology',
+			language: 'en',
+			country: 'us'
+		  }).then(response => {
+			console.log(response);
+			this.setState({news:response.json()});
+		});
 	};
 	render() {
 		const {news} = this.state;
