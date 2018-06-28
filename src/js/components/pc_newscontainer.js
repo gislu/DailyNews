@@ -10,7 +10,7 @@ export default class PCNewsContainer extends React.Component {
 		const settings = {
 			dots: true,
 			infinite: true,
-			speed: 500,
+			speed: 300,
 			slidesToShow: 1,
 			autoplay: true
 		};
@@ -28,14 +28,14 @@ export default class PCNewsContainer extends React.Component {
 									<div><img src="./src/images/carousel_4.jpg"/></div>
 								</Carousel>
 							</div>
-							<PCNewsImageBlock count={6} type="guoji" width="400px" cartTitle="HeadLines" imageWidth="112px"/>
+							<PCNewsImageBlock count={6} type="keji" width="400px" cartTitle="HeadLines" imageWidth="112px"/>
 						</div>
 						<Tabs class="tabs_news">
 							<TabPane tab="Headlines" key="1">
-								<PCNewsBlock count={22} type="top" width="100%" bordered="false"/>
+								<PCNewsBlock count={22} type="sports" width="100%" bordered="false"/>
 							</TabPane>
 							<TabPane tab="World" key="2">
-								<PCNewsBlock count={22} type="guoji" width="100%" bordered="false"/>
+								<PCNewsBlock count={22} type="business" width="100%" bordered="false"/>
 							</TabPane>
 						</Tabs>
 						<Tabs class="tabs_product">
