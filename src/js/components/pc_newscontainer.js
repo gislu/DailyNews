@@ -28,7 +28,7 @@ export default class PCNewsContainer extends React.Component {
 									<div><img src="./src/images/carousel_4.jpg"/></div>
 								</Carousel>
 							</div>
-							<PCNewsImageBlock count={6} type="general" width="400px" cartTitle="HeadLines" imageWidth="112px"/>
+							<PCNewsImageBlock count={6} type="general" width="400px" cartTitle="Sports" imageWidth="112px"/>
 						</div>
 						<Tabs class="tabs_news">
 							<TabPane tab="Headlines" key="1">
@@ -44,8 +44,8 @@ export default class PCNewsContainer extends React.Component {
 							</TabPane>
 						</Tabs>
 						<div>
-							<PCNewsImageBlock count={8} type="sports" width="100%" cartTitle="Sports" imageWidth="132px"/>
-							<PCNewsImageBlock count={16} type="health" width="100%" cartTitle="ealth" imageWidth="132px"/>
+							<PCNewsImageBlock count={8} type="sports" width="100%" cartTitle="General" imageWidth="132px"/>
+							<PCNewsImageBlock count={16} type="health" width="100%" cartTitle="Health" imageWidth="132px"/>
 						</div>
 					</Col>
 					<Col span={2}></Col>

@@ -140,12 +140,14 @@
 }
 
 .custom-card {
+   
     padding: 5px;
 }
 
 .custom-card p {
     color: #999;
 }
+
 
 .register{
   float: right !important;

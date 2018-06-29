@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card} from 'antd';
 import {Link} from 'react-router-dom';
-export default class PCNewsImageBlock extends React.Component {
+export default class PCSideImageBlock extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -12,7 +12,7 @@ export default class PCNewsImageBlock extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		let count = this.props.count + 15;
+		let count = this.props.count + 0;
 		let url ="https://newsapi.org/v2/top-headlines?country=us&category="+this.props.type+"&pageSize="+ count +"&apiKey=8611169f68f94d8582ac555bf7173ec4";
 		fetch(url,myFetchOptions)
 		.then(response => response.json())
@@ -45,9 +45,9 @@ export default class PCNewsImageBlock extends React.Component {
 						<div class="custom-image">
 							<img alt="Load Failed" style={styleImage} src={newsItem.urlToImage}/>
 						</div>
-						<div class="custom-card">
+						<div class="custom-card ">
 							<h3 style={styeH3}>{newsItem.title}</h3>
-							<p style={styeH3}>{newsItem.source.name}</p>
+							<p>{newsItem.source.name}</p>
 						</div>
 					</Link>
 				</div>
