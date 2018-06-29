@@ -18,7 +18,7 @@ export default class PCNewsBlock extends React.Component {
 		.then(
 			json => {
 			this.setState({news: json.articles})
-			console.log(this.state.news);
+			//console.log(this.state.news);
 		}	
 		);
 	};

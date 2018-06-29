@@ -18,7 +18,22 @@ export default class PCNewsImageBlock extends React.Component {
 		.then(response => response.json())
 		.then(
 			json => {
-			this.setState({news: json.articles})
+			let artpool = json.articles;
+			let articles = [];
+			let num = 0;
+			for(let item in artpool){
+				if(artpool[item].urlToImage == null){
+					continue;
+				}
+				if(num < this.props.count){
+					num++;
+					articles.push(artpool[item]);
+				}
+				
+			}
+
+			console.log(articles);
+			this.setState({news: articles})
 			//console.log(this.state.news);
 		}	
 		);
@@ -36,6 +51,8 @@ export default class PCNewsImageBlock extends React.Component {
 			overflow: "hidden",
 			textOverflow: "ellipsis"
 		};
+		
+
 		const {news} = this.state;
 		const newsList = news.length
 			? 
