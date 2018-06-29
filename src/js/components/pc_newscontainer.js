@@ -28,14 +28,14 @@ export default class PCNewsContainer extends React.Component {
 									<div><img src="./src/images/carousel_4.jpg"/></div>
 								</Carousel>
 							</div>
-							<PCNewsImageBlock count={6} type="keji" width="400px" cartTitle="HeadLines" imageWidth="112px"/>
+							<PCNewsImageBlock count={6} type="general" width="400px" cartTitle="HeadLines" imageWidth="112px"/>
 						</div>
 						<Tabs class="tabs_news">
 							<TabPane tab="Headlines" key="1">
-								<PCNewsBlock count={22} type="sports" width="100%" bordered="false"/>
-							</TabPane>
-							<TabPane tab="World" key="2">
 								<PCNewsBlock count={22} type="business" width="100%" bordered="false"/>
+							</TabPane>
+							<TabPane tab="Sports" key="2">
+								<PCNewsBlock count={22} type="sports" width="100%" bordered="false"/>
 							</TabPane>
 						</Tabs>
 						<Tabs class="tabs_product">
@@ -44,8 +44,8 @@ export default class PCNewsContainer extends React.Component {
 							</TabPane>
 						</Tabs>
 						<div>
-							<PCNewsImageBlock count={8} type="guonei" width="100%" cartTitle="U.S." imageWidth="132px"/>
-							<PCNewsImageBlock count={16} type="yule" width="100%" cartTitle="Entertainment" imageWidth="132px"/>
+							<PCNewsImageBlock count={8} type="sports" width="100%" cartTitle="Sports" imageWidth="132px"/>
+							<PCNewsImageBlock count={16} type="health" width="100%" cartTitle="ealth" imageWidth="132px"/>
 						</div>
 					</Col>
 					<Col span={2}></Col>

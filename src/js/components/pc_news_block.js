@@ -12,7 +12,7 @@ export default class PCNewsBlock extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		let url ="https://newsapi.org/v2/top-headlines?country=us&category="+this.props.type+"&apiKey=8611169f68f94d8582ac555bf7173ec4";
+		let url ="https://newsapi.org/v2/top-headlines?country=us&category="+this.props.type+"&pageSize="+this.props.count+"&apiKey=8611169f68f94d8582ac555bf7173ec4";
 		fetch(url,myFetchOptions)
 		.then(response => response.json())
 		.then(

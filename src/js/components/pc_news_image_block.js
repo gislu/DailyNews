@@ -12,18 +12,17 @@ export default class PCNewsImageBlock extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions)
+		let url ="https://newsapi.org/v2/top-headlines?country=us&category="+this.props.type+"&pageSize="+this.props.count+"&apiKey=8611169f68f94d8582ac555bf7173ec4";
+		fetch(url,myFetchOptions)
 		.then(response => response.json())
 		.then(
 			json => {
-				
-				//console.log(json)
-				this.setState({news: json});
-				//console.log(typeof(this.state.news));
-			});
-				
-				
+			this.setState({news: json.articles})
+			//console.log(this.state.news);
+		}	
+		);
 	};
+
 	render() {
 		const styleImage = {
 			display: "block",
@@ -41,13 +40,13 @@ export default class PCNewsImageBlock extends React.Component {
 			? 
 			news.map((newsItem, index) => (
 				<div key={index} class="imageblock">
-					<Link to={`/details/${newsItem.uniquekey}`}>
+					<Link to={`/details/${newsItem.url}`}>
 						<div class="custom-image">
-							<img alt="" style={styleImage} src={newsItem.thumbnail_pic_s}/>
+							<img alt="Load Failed" style={styleImage} src={newsItem.urlToImage}/>
 						</div>
 						<div class="custom-card">
 							<h3 style={styeH3}>{newsItem.title}</h3>
-							<p>{newsItem.author_name}</p>
+							<p>{newsItem.source.name}</p>
 						</div>
 					</Link>
 				</div>
@@ -56,7 +55,7 @@ export default class PCNewsImageBlock extends React.Component {
 		return (
 			<div class="topNewsList">
 				<Card title={this.props.cartTitle} bordered={true} style={{
-					width: this.props.width
+					width: this.props.widthx
 				}}>
 					{newsList}
 				</Card>
