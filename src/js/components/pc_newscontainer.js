@@ -22,7 +22,7 @@ export default class PCNewsContainer extends React.Component {
 						<div class="leftContainer">
 							<div class="carousel">
 								<Carousel {...settings}>
-									<div><img src="./src/images/carousel_1.jpg"/></div>
+									<div><img src="./src/images/carousel_1.jpg"/></div> 
 									<div><img src="./src/images/carousel_2.jpg"/></div>
 									<div><img src="./src/images/carousel_3.jpg"/></div>
 									<div><img src="./src/images/carousel_4.jpg"/></div>
@@ -47,8 +47,8 @@ export default class PCNewsContainer extends React.Component {
 							</TabPane>
 						</Tabs>
 						<div>
-							<PCNewsImageBlock count={8} type="sports" width="100%" cartTitle="Sports" imageWidth="132px"/>
-							<PCNewsImageBlock count={16} type="science" width="100%" cartTitle="Science" imageWidth="132px"/>
+							<PCNewsImageBlock count={8} type="sports" width="100%" cartTitle="Sports" imageWidth="130px"/>
+							<PCNewsImageBlock count={16} type="science" width="100%" cartTitle="Science" imageWidth="130px"/>
 						</div>
 					</Col>
 					<Col span={2}></Col>

@@ -25,7 +25,7 @@ class CommonComments extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getcomments&uniquekey=" + this.props.uniquekey, myFetchOptions).then(response => response.json()).then(json => {
+		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getcomments&uniquekey="+this.props.uniquekey , myFetchOptions).then(response => response.json()).then(json => {
 			this.setState({comments: json});
 		});
 	};
