@@ -58,7 +58,7 @@ export default class PCNewsImageBlock extends React.Component {
 			? 
 			news.map((newsItem, index) => (
 				<div key={index} class="imageblock">
-					<Link to={`/details/${newsItem.url}`}>
+					<Link to={`/details/${encodeURIComponent(newsItem.url)}`}>
 						<div class="custom-image">
 							<img alt="Load Failed" style={styleImage} src={newsItem.urlToImage}/>
 						</div>

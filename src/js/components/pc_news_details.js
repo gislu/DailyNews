@@ -25,7 +25,7 @@ export default class PCNewsDetails extends React.Component {
 		return {__html: this.state.newsItem.pagecontent};
 	};
 	render() {
-		console.log(this.props.url);
+		console.log(decodeURIComponent(this.props.match.params.url));
 		return (
 			<div>
 				<PCHeader></PCHeader>
@@ -33,9 +33,9 @@ export default class PCNewsDetails extends React.Component {
 					<Col span={2}></Col>
 					<Col span={14} className="container">
 						<div class="articleContainer">
-						<iframe src={this.props.match.params.url}></iframe>	
+						<iframe src={decodeURIComponent(this.props.match.params.url)}></iframe>	
 						</div>
-							<CommonComments uniquekey={this.props.match.params.uniquekey}/>
+							<CommonComments uniquekey={this.props.match.params.url}/>
 					</Col>
 					<Col span={6}>
 						<PCNewsImageBlock count={40} type="top" width="100%" cardTitle="Related News" imageWidth="150px"/>

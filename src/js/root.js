@@ -22,7 +22,7 @@ export default class Root extends React.Component {
 					<BrowserRouter>
 						<Switch>
 							<Route exact path="/" component={PCIndex}></Route>
-							<Route path="/details/:uniquekey" component={PCNewsDetails}></Route>
+							<Route path="/details/:url" component={PCNewsDetails}></Route>
 							<Route path="/usercenter" component={PCUserCenter}></Route>
 						</Switch>
 					</BrowserRouter>
