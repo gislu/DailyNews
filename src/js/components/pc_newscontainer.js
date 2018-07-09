@@ -5,6 +5,7 @@ const TabPane = Tabs.TabPane;
 import PCNewsBlock from './pc_news_block';
 import PCNewsImageBlock from './pc_news_image_block';
 import PCProduct from './pc_products';
+import SideBar from './sidebar';
 export default class PCNewsContainer extends React.Component {
 	render() {
 		const settings = {
@@ -43,7 +44,7 @@ export default class PCNewsContainer extends React.Component {
 						</Tabs>
 						<Tabs class="tabs_product">
 							<TabPane tab="OutSides Links" key="1">
-								<PCProduct/>
+								<SideBar/>
 							</TabPane>
 						</Tabs>
 						<div>
