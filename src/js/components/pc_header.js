@@ -52,7 +52,6 @@ class PCHeader extends React.Component {
 	};
 	handleSubmit(e)
 	{
-		//页面开始向 API 进行提交数据
 		e.preventDefault();
 		var myFetchOptions = {
 			method: 'GET'

@@ -289,3 +289,17 @@ iframe {
     margin-top: -.21rem;
     left: .66rem
 }
+
+
+
+/***OutSide Link****/
+.bldark{
+    padding-top: 8px;
+    background-color: rgb(228, 225, 225);
+}
+
+
+.blgary{
+    padding-top: 8px;
+    background-color: white;
+}

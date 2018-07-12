@@ -7,9 +7,10 @@ import MobileNewsDetails from './components/mobile_news_details';
 import MobileIndex from './components/mobile_index';
 import PCUserCenter from './components/pc_usercenter';
 import MobileUserCenter from './components/mobile_usercenter';
+import PC_VideoDemo from './components/pc_videodemo';
 import 'antd/dist/antd.css';
 import MediaQuery from 'react-responsive';
-import { LocaleProvider } from 'antd';
+import {LocaleProvider} from 'antd';
 import en_GB from 'antd/lib/locale-provider/en_GB';
 
 export default class Root extends React.Component {
@@ -24,6 +25,7 @@ export default class Root extends React.Component {
 							<Route exact path="/" component={PCIndex}></Route>
 							<Route path="/details/:url" component={PCNewsDetails}></Route>
 							<Route path="/usercenter" component={PCUserCenter}></Route>
+							<Route path="/videodemo" component={PC_VideoDemo}></Route>
 						</Switch>
 					</BrowserRouter>
 				</MediaQuery>
