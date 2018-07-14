@@ -303,3 +303,21 @@ iframe {
     padding-top: 8px;
     background-color: white;
 }
+
+.iframeWrapper{
+    display:inline-block;
+    position:relative;
+  }
+  .iframeWrapper:after{
+    /* z-index:1 is not necessary for this. */
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+  }
+  
+  .iframeWrapper iframe{
+    vertical-align:top;
+  }

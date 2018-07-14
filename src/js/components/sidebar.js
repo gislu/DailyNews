@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default class SideBar extends React.Component{
     constructor() {
@@ -8,16 +9,18 @@ export default class SideBar extends React.Component{
 		};
     };
     handleclick(e){
-        e.preventDefault();
-        console.log("i got this!");
+        //e.preventDefault();
+        console.log('click video');
     }
     render(){
         return(
              <div className="area-sub" style={{overflow: 'visible'}}>
-             <div class="iframeWrapper">
-                <iframe width="345" height="300" src="https://www.youtube.com/embed/7aKhAisjWCU"  frameBorder="0" onClick={this.handleclick.bind(this)} allowFullScreen>
+             <Link to={`/videodemo`}>
+             <div class="iframeWrapper" onClick={this.handleclick.bind(this)}>
+                <iframe width="345" height="300" src="https://www.youtube.com/embed/7aKhAisjWCU"  frameBorder="0"  allowFullScreen>
                 </iframe>
             </div>
+            </Link>
             <div className="bottomlink">
             <div className="bldark">
              <div className="bl">
@@ -76,7 +79,7 @@ export default class SideBar extends React.Component{
                         <a href="https://www.amazon.com/" className="productlinks-fold-126">Amazon</a>
               </div>
               </div>
-              <div className="bldark">
+            <div className="bldark">
              <div className="bl">
                         <a href="https://www.google.com/gmail/">Gmail</a>&nbsp;&nbsp;
                         <a href="https://login.microsoftonline.com/">OutLook</a>&nbsp;&nbsp;

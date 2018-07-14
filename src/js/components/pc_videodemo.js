@@ -1,8 +1,9 @@
 import React from 'react';
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';
+import {Row, Col} from 'antd';
 
-export default class PC_VideoDemo extends React.Component{
+export default class PCVideoDemo extends React.Component{
     constructor() {
 		super();
 	};
@@ -10,10 +11,16 @@ export default class PC_VideoDemo extends React.Component{
         return(
             <div>
                 <PCHeader></PCHeader>
-                <iframe width="345" height="300" src="https://www.youtube.com/embed/7aKhAisjWCU"  frameBorder="0" allowFullScreen/>>
+                <Row>  
+                    <Col span={2}></Col> 
+                    <Col span={20}>            
+                    <iframe width="800" height="600" src="https://www.youtube.com/embed/7aKhAisjWCU?autoplay=1"  frameBorder="0" allowFullScreen>
+                    </iframe>
+                    </Col>  
+                    <Col span={2}></Col> 
+                </Row>
                 <PCFooter></PCFooter>
             </div>
         );
-
     };
 }
