@@ -6,7 +6,23 @@ import {Row, Col} from 'antd';
 export default class PCVideoDemo extends React.Component{
     constructor() {
 		super();
-	};
+    };
+    
+    escFunction(event){
+        if(event.keyCode === 27) {
+          //Do whatever when esc is pressed
+          console.log("pressed!");
+        }
+      }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.escFunction, false);
+      }
+    
+      componentWillUnmount(){
+        document.removeEventListener("keydown", this.escFunction, false);
+      }
+
     render(){
         return(
             <div>
