@@ -1,7 +1,8 @@
 import React from 'react';
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';
-import {Row, Col} from 'antd';
+import {Row, Col, message} from 'antd';
+import createHistory from "history/createBrowserHistory"
 
 export default class PCVideoDemo extends React.Component{
     constructor() {
@@ -11,11 +12,14 @@ export default class PCVideoDemo extends React.Component{
     escFunction(event){
         if(event.keyCode === 27) {
           //Do whatever when esc is pressed
+          const history = createHistory();
+          history.goBack();
           console.log("pressed!");
         }
       }
 
     componentDidMount(){
+        message.info("Press 'ESC' to back.");
         document.addEventListener("keydown", this.escFunction, false);
       }
     

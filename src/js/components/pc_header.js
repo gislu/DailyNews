@@ -8,13 +8,10 @@ import {
 	Form,
 	Input,
 	Button,
-	CheckBox,
 	Modal
 } from 'antd';
 const FormItem = Form.Item;
-const SubMenu = Menu.SubMenu;
 const TabPane = Tabs.TabPane;
-const MenuItemGroup = Menu.ItemGroup;
 import {Link} from 'react-router-dom';
 class PCHeader extends React.Component {
 	constructor() {
@@ -29,6 +26,7 @@ class PCHeader extends React.Component {
 		};
 	};
 
+ 
 	componentWillMount(){
 		if (localStorage.userid!='') {
 			this.setState({hasLogined:true});

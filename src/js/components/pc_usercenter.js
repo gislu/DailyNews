@@ -1,9 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Row, Col, Modal} from 'antd';
-import {Menu, Icon} from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import {Icon} from 'antd';
 import {
 	Tabs,
 	Form,
