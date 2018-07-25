@@ -36,7 +36,7 @@ export default class PCVideoDemo extends React.Component{
                     <Col span={15}>            
                     <iframe height="600" width="100%" src="https://www.youtube.com/embed/7aKhAisjWCU?autoplay=1"  frameBorder="0" allowFullScreen>
                     </iframe>
-                    </Col>
+                    </Col> 
                     <Col span={6}><PC_Drawer/></Col>   
                     <Col span={2}></Col>  
                 </Row>

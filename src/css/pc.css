@@ -40,14 +40,23 @@
 }
 
 .ant-card{
-  margin-top: 5px !important;
+  margin-top: 0px !important;
 }
 
+.ant-card-head{
+    line-height: 100%;
+    min-height: 40px !important;
+}
 .ant-card-head-title{
   text-align: left !important;
+  padding: 10px 0 !important;
 }
 .ant-card-body{
   text-align: left !important;
+}
+
+.ant-tabs-nav .ant-tabs-tab{
+    padding-top:5px !important;
 }
 .usercenter {
     float: right !important;
@@ -69,7 +78,7 @@
 
 .carousel img {
     width: 400px;
-    height: 260px;
+    height: 245px;
 }
 
 .topNewsList {
@@ -130,14 +139,14 @@
 }
 
 .custom-card {
-   
+    font-size:12px;
     padding: 5px;
 }
 
 .custom-card p {
+    font-size:8px;
     color: #999;
 }
-
 
 .register{
   float: right !important;
@@ -295,6 +304,7 @@ iframe {
 /***OutSide Link****/
 .bottomlink{
     margin-top: 8px;
+    font-size: 12px;
 }
 
 .bldark{
@@ -327,4 +337,8 @@ iframe {
   
   .iframeWrapper iframe{
     vertical-align:top;
+  }
+
+  .videocomment{
+      margin-left: 5px;
   }
