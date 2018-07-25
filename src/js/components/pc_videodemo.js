@@ -2,7 +2,8 @@ import React from 'react';
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';
 import {Row, Col, message} from 'antd';
-import createHistory from "history/createBrowserHistory"
+import createHistory from "history/createBrowserHistory";
+import PC_Drawer from "./pc_drawer";
 
 export default class PCVideoDemo extends React.Component{
     constructor() {
@@ -14,7 +15,6 @@ export default class PCVideoDemo extends React.Component{
           //Do whatever when esc is pressed
           const history = createHistory();
           history.goBack();
-          console.log("pressed!");
         }
       }
 
@@ -31,13 +31,14 @@ export default class PCVideoDemo extends React.Component{
         return(
             <div>
                 <PCHeader></PCHeader>
-                <Row>  
-                    <Col span={2}></Col> 
-                    <Col span={20}>            
-                    <iframe width="800" height="600" src="https://www.youtube.com/embed/7aKhAisjWCU?autoplay=1"  frameBorder="0" allowFullScreen>
+                <Row>
+                    <Col span={1}></Col>      
+                    <Col span={15}>            
+                    <iframe height="600" width="100%" src="https://www.youtube.com/embed/7aKhAisjWCU?autoplay=1"  frameBorder="0" allowFullScreen>
                     </iframe>
-                    </Col>  
-                    <Col span={2}></Col> 
+                    </Col>
+                    <Col span={6}><PC_Drawer/></Col>   
+                    <Col span={2}></Col>  
                 </Row>
                 <PCFooter></PCFooter>
             </div>

@@ -293,18 +293,25 @@ iframe {
 
 
 /***OutSide Link****/
+.bottomlink{
+    margin-top: 8px;
+}
+
 .bldark{
     padding-top: 8px;
+    padding-bottom: 8px;
     background-color: rgb(228, 225, 225);
 }
 
 
-.blgary{
+.blgray{
     padding-top: 8px;
+    padding-bottom: 8px;
     background-color: white;
 }
 
 .iframeWrapper{
+    margin-top: 5px;
     display:inline-block;
     position:relative;
   }

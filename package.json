@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "antd": "^2.10.2",
+    "antd": "^3.7.2",
     "babel-loader": "^7.0.0",
     "babel-plugin-import": "^1.2.0",
     "babel-plugin-react-html-attrs": "^2.0.0",

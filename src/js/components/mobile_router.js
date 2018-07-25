@@ -4,6 +4,7 @@ import MobileNewsDetails from './mobile_news_details';
 import MobileIndex from './mobile_index';
 import MobileUserCenter from './mobile_usercenter';
 
+
 export default class Mobile_Router extends React.Component{
     render(){
         return(

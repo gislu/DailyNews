@@ -3,11 +3,9 @@ import {Row, Col, Modal} from 'antd';
 import {Icon} from 'antd';
 import {
 	Tabs,
-	Form,
 	Card,
 	Upload
 } from 'antd';
-const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';

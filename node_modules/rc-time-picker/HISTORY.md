@@ -1,6 +1,31 @@
 # History
 
----
+3.3.0 / 2019-02-8
+---------------------------
+
+- Add `inputReadOnly`
+
+3.2.0 / 2017-11-15
+---------------------------
+
+- Add  `blur()` and `autoFocus`.
+
+
+3.1.0 / 2017-11-02
+---------------------------
+
+- Upgrade to `rc-trigger@2.x`.
+
+
+3.0.0 / 2017-10-22
+---------------------------
+
+- Support React 16.
+- Add `onKeydown`.
+- Add `focusOnOpen`.
+- Add `hourStep` `minuteStep` `secondStep`.
+- Fix disabled style.
+- Use `this.xxx` to replace `this.refs.xxx`.
 
 2.4.0 / 2017-05-02
 ---------------------------

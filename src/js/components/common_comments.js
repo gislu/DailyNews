@@ -1,9 +1,6 @@
 import React from 'react';
 import {Row, Col} from 'antd';
 import {
-	Menu,
-	Icon,
-	Tabs,
 	Form,
 	Input,
 	Button,
@@ -11,9 +8,6 @@ import {
 	notification
 } from 'antd';
 const FormItem = Form.Item;
-const SubMenu = Menu.SubMenu;
-const TabPane = Tabs.TabPane;
-const MenuItemGroup = Menu.ItemGroup;
 class CommonComments extends React.Component {
 	constructor() {
 		super();
@@ -65,7 +59,7 @@ class CommonComments extends React.Component {
 						{commnetList}
 						<Form onSubmit ={this.handleSubmit.bind(this)}>
 							<FormItem label="Your Comments">
-								{getFieldDecorator('remark')(<Input type="textarea" placeholder="Write Anything...."/>)}
+								{getFieldDecorator('remark')(<Input.TextArea type="textarea" placeholder="Write Anything...."/>)}
 							</FormItem>
 							<Button type="primary" htmlType="submit">Comment</Button>
 							&nbsp;&nbsp;
