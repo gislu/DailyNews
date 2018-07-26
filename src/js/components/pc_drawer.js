@@ -1,113 +1,97 @@
 import React from 'react';
-import { List, Avatar, Button, Spin } from 'antd';
-import reqwest from 'reqwest';
-
-const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
+import { List, Avatar} from 'antd';
+import InfiniteScroll from 'react-infinite-scroller';
+const fakeDataUrl = 'https://randomuser.me/api/?results=7';	
 export default class PC_Drawer extends React.Component{
   constructor(){
     super();
     this.state={    
       loading: true,
-      loadingMore: false,
-      showLoadingMore: true,
       data: [],
+      hasMore: true,
     };
   }
 
   componentDidMount() {
-    this.getData((res) => {
+		var myFetchOptions = {
+			method: 'GET'
+		};
+    fetch(fakeDataUrl,myFetchOptions)
+		.then(response => response.json())
+		.then(
+			json => {
+      console.log(json.results);
       this.setState({
-        loading: false,
-        data: res.results,
+        data: json.results,
+        loading :false
       });
-    });
-  }
-  getData(callback){
-    return reqwest({
-      url: fakeDataUrl,
-      type: 'json',
-      method: 'get',
-      contentType: 'application/json',
-      success: (res) => {
-        callback(res);
-      },
-    });
+		}	
+		);
   }
 
-  onLoadMore(){
+  getdata(callback){
+    var myFetchOptions = {
+			method: 'GET'
+		};
+    fetch(fakeDataUrl,myFetchOptions)
+		.then(response => response.json())
+		.then(
+			json => {
+        callback(json);
+		}	
+		);
+  }
+
+  handleInfiniteOnLoad(){
+    let data = this.state.data;
     this.setState({
-      loadingMore: true,
+      loading: true,
     });
+    if (data.length > 14) {
+      message.warning('Infinite List loaded all');
+      this.setState({
+        hasMore: false,
+        loading: false,
+      });
+      return;
+    }
     this.getData((res) => {
-      const data = this.state.data.concat(res.results);
+      data = data.concat(res.results);
       this.setState({
         data,
-        loadingMore: false,
-      }, () => {
-        // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-        // In real scene, you can using public method of react-virtualized:
-        // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-        window.dispatchEvent(new Event('resize'));
+        loading: false,
       });
     });
   }
-
+ 
   render(){
-    const pStyle = {
-      fontSize: 14,
-      color: 'rgba(0,0,0,0.85)',
-      lineHeight: '24px',
-      display: 'block',
-      marginBottom: 16,
-    };
+    const { loading, data } = this.state;
 
-    const DescriptionItem = ({ title, content }) => {
-      return (
-        <div>
-          <p>
-            {title}:
-          </p>
-          {content}
-        </div>
-      );
-    };
-
-    return(
+    return (
       <div class="videocomment">
-        <List
-          dataSource={[
-            {
-              name: 'Alex',
-            },
-            {
-              name: 'Bob',
-            },            {
-              name: 'Daniel',
-            },
-            {
-              name: 'Eason',
-            },            {
-              name: 'Jay',
-            },
-            {
-              name: 'Gergo',
-            },
-          ]}
-          bordered
-          renderItem={item => (
-            <List.Item key={item.id} actions={[<a onClick={this.showDrawer}>View Profile</a>]}>
-              <List.Item.Meta
-                avatar={
-                  <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
-                }
-                title={<a href="https://ant.design/index-cn">{item.name}</a>}
-                description="Progresser AFX"
-              />
-            </List.Item>
-          )}
-        />
+      <InfiniteScroll
+          initialLoad={false}
+          pageStart={0}
+          loadMore={this.handleInfiniteOnLoad}
+          hasMore={!this.state.loading && this.state.hasMore}
+          useWindow={false}>
+      <List
+        loading={loading}
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={item => (
+          <List.Item key={item.id}>
+            <List.Item.Meta
+              avatar={<Avatar src={item.picture.thumbnail} />}
+              title={<a href="https://ant.design">{item.name.last}</a>}
+              description={item.email}
+            />
+            <div>Content</div>
+          </List.Item>
+        )}/>
+      
+      </InfiniteScroll>
       </div>
-
     );
     
   }
