@@ -339,6 +339,13 @@ iframe {
     vertical-align:top;
   }
 
+  .videosidebar{
+    margin-left: 5px;
+  }
   .videocomment{
-      margin-left: 5px;
+    overflow: auto;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 8px 24px;
+    height: 450px;
   }

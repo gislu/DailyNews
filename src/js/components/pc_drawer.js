@@ -1,7 +1,10 @@
 import React from 'react';
-import { List, Avatar} from 'antd';
+import { List, Avatar, Form, Input, Button} from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
-const fakeDataUrl = 'https://randomuser.me/api/?results=7';	
+
+
+const fakeDataUrl = 'https://randomuser.me/api/?results=21';	
+const FormItem = Form.Item;
 export default class PC_Drawer extends React.Component{
   constructor(){
     super();
@@ -66,8 +69,8 @@ export default class PC_Drawer extends React.Component{
  
   render(){
     const { loading, data } = this.state;
-
     return (
+      <div class="videosidebar">
       <div class="videocomment">
       <InfiniteScroll
           initialLoad={false}
@@ -89,9 +92,17 @@ export default class PC_Drawer extends React.Component{
             <div>Content</div>
           </List.Item>
         )}/>
-      
       </InfiniteScroll>
       </div>
+      <div >
+      <Form>
+      <FormItem label="Your Comments" >
+        <Input.TextArea type="textarea" placeholder="Write Anything...."/>
+      </FormItem>
+      <div style={{textAlign:'center'}} ><Button type="primary" htmlType="submit">Comment</Button></div>
+    </Form>
+    </div>
+    </div>
     );
     
   }

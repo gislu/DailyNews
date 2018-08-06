@@ -34,7 +34,6 @@ export default class PCNewsImageBlock extends React.Component {
 
 			//console.log(articles);
 			this.setState({news: articles})
-			//console.log(this.state.news);
 		}	
 		);
 	};
