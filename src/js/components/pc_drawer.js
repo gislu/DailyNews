@@ -1,6 +1,7 @@
 import React from 'react';
 import { List, Avatar, Form, Input, Button} from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
+import { format } from 'path';
 
 
 const fakeDataUrl = 'https://randomuser.me/api/?results=7';	
@@ -23,10 +24,9 @@ class PC_Drawer extends React.Component{
 		.then(response => response.json())
 		.then(
 			json => {
-      console.log(json.results);
       this.setState({
         data: json.results,
-        loading :false
+        loading:false
       });
 		}	
 		);
@@ -50,7 +50,7 @@ class PC_Drawer extends React.Component{
     this.setState({
       loading: true,
     });
-    if (data.length > 50) {
+    if (data.length > 30) {
       message.warning('Loaded all comment!');
       this.setState({
         hasMore: false,
@@ -68,12 +68,20 @@ class PC_Drawer extends React.Component{
   }
 
   commit(){
-    
+    var formData = this.props.form.getFieldsValue();
+    let newcomment = [{gender:"female", name:{title:"miss",first:formData.mycontext, last:"Your Comment:"},picture:{large:"https://randomuser.me/api/portraits/women/65.jpg",medium:"https://randomuser.me/api/portraits/med/women/65.jpg",thumbnail:"https://image.freepik.com/free-icon/male-user-shadow_318-34042.jpg"}}];
+    let rsdata = this.state.data;
+    rsdata = newcomment.concat(rsdata);
+    console.log(rsdata);
+    this.setState({data : rsdata});
+    this.props.form.setFieldsValue({
+      mycontext: "",
+  });
   }
  
   render(){
     const { getFieldDecorator } = this.props.form;
-    const { loading, data } = this.state;
+    const {loading} = this.state;
     return (
       <div class="videosidebar">
       <div class="videocomment">
@@ -86,13 +94,13 @@ class PC_Drawer extends React.Component{
       <List
         loading={loading}
         itemLayout="horizontal"
-        dataSource={data}
+        dataSource={this.state.data}
         renderItem={item => (
           <List.Item key={item.id}>
             <List.Item.Meta
               avatar={<Avatar src={item.picture.thumbnail} />}
-              title={<a href="https://ant.design">{item.name.last}</a>}
-              description={item.email}
+              title={<label>{item.name.last}</label>}
+              description={"Hi, this is " + item.name.first}
             />
           </List.Item>
         )}/>
