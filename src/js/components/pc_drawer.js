@@ -3,9 +3,9 @@ import { List, Avatar, Form, Input, Button} from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 
 
-const fakeDataUrl = 'https://randomuser.me/api/?results=21';	
+const fakeDataUrl = 'https://randomuser.me/api/?results=7';	
 const FormItem = Form.Item;
-export default class PC_Drawer extends React.Component{
+class PC_Drawer extends React.Component{
   constructor(){
     super();
     this.state={    
@@ -50,8 +50,8 @@ export default class PC_Drawer extends React.Component{
     this.setState({
       loading: true,
     });
-    if (data.length > 14) {
-      message.warning('Infinite List loaded all');
+    if (data.length > 50) {
+      message.warning('Loaded all comment!');
       this.setState({
         hasMore: false,
         loading: false,
@@ -66,8 +66,13 @@ export default class PC_Drawer extends React.Component{
       });
     });
   }
+
+  commit(){
+    
+  }
  
   render(){
+    const { getFieldDecorator } = this.props.form;
     const { loading, data } = this.state;
     return (
       <div class="videosidebar">
@@ -89,17 +94,16 @@ export default class PC_Drawer extends React.Component{
               title={<a href="https://ant.design">{item.name.last}</a>}
               description={item.email}
             />
-            <div>Content</div>
           </List.Item>
         )}/>
       </InfiniteScroll>
       </div>
-      <div >
+      <div>
       <Form>
       <FormItem label="Your Comments" >
-        <Input.TextArea type="textarea" placeholder="Write Anything...."/>
+      {getFieldDecorator('mycontext')(<Input.TextArea type="textarea" placeholder="Write Anything...."/>)}
       </FormItem>
-      <div style={{textAlign:'center'}} ><Button type="primary" htmlType="submit">Comment</Button></div>
+      <div style={{textAlign:'center'}}><Button type="primary" htmlType="submit" onClick={this.commit.bind(this)}>Comment</Button></div>
     </Form>
     </div>
     </div>
@@ -108,5 +112,5 @@ export default class PC_Drawer extends React.Component{
   }
 
     }
-
+  export default PC_Drawer = Form.create({})(PC_Drawer);
   
