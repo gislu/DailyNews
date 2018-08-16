@@ -1,7 +1,7 @@
 import React from 'react';
-import { List, Avatar, Form, Input, Button} from 'antd';
+import { List, Avatar, Form, Input, Button, message} from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
-import { format } from 'path';
+import reqwest from 'reqwest';
 
 
 const fakeDataUrl = 'https://randomuser.me/api/?results=7';	
@@ -10,42 +10,61 @@ class PC_Drawer extends React.Component{
   constructor(){
     super();
     this.state={    
-      loading: true,
       data: [],
+      loading: false,
       hasMore: true,
     };
   }
 
   componentDidMount() {
-		var myFetchOptions = {
-			method: 'GET'
-		};
-    fetch(fakeDataUrl,myFetchOptions)
-		.then(response => response.json())
-		.then(
-			json => {
+    this.getData((res) => {
       this.setState({
-        data: json.results,
-        loading:false
+        data: res.results,
       });
-		}	
-		);
+    });
+    
+  }
+  // getData(callback) {
+  //   reqwest({
+  //     url: fakeDataUrl,
+  //     type: 'json',
+  //     method: 'get',
+  //     contentType: 'application/json',
+  //     success: (res) => {
+  //       callback(res);
+  //     },
+  //   });
+  // }
+
+  // getData = (callback) => {
+  //   reqwest({
+  //     url: fakeDataUrl,
+  //     type: 'json',
+  //     method: 'get',
+  //     contentType: 'application/json',
+  //     success: (res) => {
+  //       callback(res);
+  //     },
+  //   });
+  // }
+
+
+  getData(callback) {
+    var myFetchOptions = {
+      method: 'GET'
+    };
+    fetch(fakeDataUrl,myFetchOptions).then(response => response.json())
+    .then(
+      json => {
+        callback(json);
+    } 
+    );
   }
 
-  getdata(callback){
-    var myFetchOptions = {
-			method: 'GET'
-		};
-    fetch(fakeDataUrl,myFetchOptions)
-		.then(response => response.json())
-		.then(
-			json => {
-        callback(json);
-		}	
-		);
-  }
+
 
   handleInfiniteOnLoad(){
+     console.log("now log:"+this.state);
     let data = this.state.data;
     this.setState({
       loading: true,
@@ -88,7 +107,7 @@ class PC_Drawer extends React.Component{
       <InfiniteScroll
           initialLoad={false}
           pageStart={0}
-          loadMore={this.handleInfiniteOnLoad}
+          loadMore={this.handleInfiniteOnLoad.bind(this)}
           hasMore={!this.state.loading && this.state.hasMore}
           useWindow={false}>
       <List
