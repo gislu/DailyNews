@@ -1,7 +1,6 @@
 import React from 'react';
 import { List, Avatar, Form, Input, Button, message} from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
-import reqwest from 'reqwest';
 
 
 const fakeDataUrl = 'https://randomuser.me/api/?results=7';	
