@@ -30,7 +30,7 @@ export default class PCNewsBlock extends React.Component {
 					<Link to=
 					{{
 						pathname: `details/${encodeURIComponent(newsItem.url)}/${encodeURIComponent(newsItem.title)}`
-					  }}>
+					  }} title={newsItem.title}>
 						{newsItem.title}
 					</Link>
 				</li>

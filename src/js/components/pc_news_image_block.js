@@ -62,11 +62,11 @@ export default class PCNewsImageBlock extends React.Component {
 						pathname: `details/${encodeURIComponent(newsItem.url)}/${encodeURIComponent(newsItem.title)}`
 					  }}>
 						<div class="custom-image">
-							<img alt="Load Failed" style={styleImage} src={newsItem.urlToImage}/>
+							<img alt="Load Failed" style={styleImage} title={newsItem.title} src={newsItem.urlToImage}/>
 						</div>
 						<div class="custom-card">
-							<h3 style={styeH3}>{newsItem.title}</h3>
-							<p style={styeH3}>{newsItem.source.name}</p>
+							<h3 style={styeH3} title={newsItem.title}>{newsItem.title}</h3>
+							<p style={styeH3} title={newsItem.source.name}>{newsItem.source.name}</p>
 						</div>
 					</Link>
 				</div>
