@@ -27,7 +27,10 @@ export default class PCNewsBlock extends React.Component {
 		const newsList = news.length
 			? news.map((newsItem, index) => (
 				<li key={index}>
-					<Link to={`details/${encodeURIComponent(newsItem.url)}`}>
+					<Link to=
+					{{
+						pathname: `details/${encodeURIComponent(newsItem.url)}/${encodeURIComponent(newsItem.title)}`
+					  }}>
 						{newsItem.title}
 					</Link>
 				</li>

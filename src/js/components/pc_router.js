@@ -12,7 +12,7 @@ export default class PC_Router extends React.Component{
             <HashRouter>
 						<Switch>
 							<Route exact path="/" component={PCIndex}></Route>
-							<Route path="/details/:url" component={PCNewsDetails}></Route>
+							<Route path="/details/:url/:title" component={PCNewsDetails}></Route>
 							<Route path="/usercenter" component={PCUserCenter}></Route>
 							<Route path="/videodemo" component={PCVideoDemo}></Route>
 						</Switch>

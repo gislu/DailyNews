@@ -10,7 +10,7 @@ class PC_Drawer extends React.Component{
     super();
     this.state={    
       data: [],
-      loading: false,
+      loading: true,
       hasMore: true,
     };
   }
@@ -19,6 +19,7 @@ class PC_Drawer extends React.Component{
     this.getData((res) => {
       this.setState({
         data: res.results,
+        loading:false
       });
     });
     
