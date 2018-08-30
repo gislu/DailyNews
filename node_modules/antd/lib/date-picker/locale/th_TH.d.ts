@@ -1,5 +1,7 @@
 declare const locale: {
     lang: any;
-    timePickerLocale: any;
+    timePickerLocale: {
+        placeholder: string;
+    };
 };
 export default locale;
