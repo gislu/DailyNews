@@ -51,7 +51,7 @@ class CommonComments extends React.Component {
 					<p>{comment.Comments}</p>
 				</Card>
 			))
-			: 'Loading';
+			: 'There is no comment so far : (';
 		return (
 			<div class="comment">
 				<Row>

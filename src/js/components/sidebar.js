@@ -16,7 +16,7 @@ export default class SideBar extends React.Component{
         return(
              <div className="area-sub" style={{overflow: 'visible'}}>
              <Link to={`/videodemo`}>
-             <div class="iframeWrapper" onClick={this.handleclick.bind(this)}>
+             <div className="iframeWrapper" onClick={this.handleclick.bind(this)}>
                 <iframe width="345" height="300" src="https://www.youtube.com/embed/7aKhAisjWCU"  frameBorder="0"  allowFullScreen>
                 </iframe>
             </div>
