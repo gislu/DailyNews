@@ -38,7 +38,7 @@ class CommonComments extends React.Component {
 			method: 'GET'
 		};
 		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=uc&userid=" + localStorage.userid + "&uniquekey=" + this.props.uniquekey, myFetchOptions).then(response => response.json()).then(json => {
-			//收藏成功以后进行一下全局的提醒
+			
 			notification['success']({message: 'DailyNews', description: 'Collect Successful'});
 		});
 	};

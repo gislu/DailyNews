@@ -70,7 +70,7 @@ export default class PCUserCenter extends React.Component {
 
 		const usercommentsList = usercomments.length ?
 		usercomments.map((comment,index)=>(
-				<Card key={index} title={`you commented ${comment.uniquekey} at ${comment.datetime}`} extra={<a href={`/details/${comment.uniquekey}`}>View</a>}>
+				<Card key={index} title={`you commented ${comment.uniquekey} at ${comment.datetime}`} extra={<a href={comment.uniquekey}>View</a>}>
 					<p>{comment.Comments}</p>
 				</Card>
 		))
@@ -84,20 +84,20 @@ export default class PCUserCenter extends React.Component {
 					<Col span={2}></Col>
 					<Col span={20}>
 						<Tabs>
-							<TabPane tab="My Collections" key="1">
+							<TabPane tab="My Comments" key="1">
 								<div class="comment">
 									<Row>
 										<Col span={24}>
-											{usercollectionList}
+											{usercommentsList }
 										</Col>
 									</Row>
 								</div>
 							</TabPane>
-							<TabPane tab="My Comments" key="2">
+							<TabPane tab="My Collections" key="2">
 							<div class="comment">
 								<Row>
 									<Col span={24}>
-										{usercommentsList}
+										{usercollectionList}
 									</Col>
 								</Row>
 							</div>

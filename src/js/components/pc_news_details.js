@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, BackTop, message} from 'antd';
+import {Row, Col, BackTop, Modal, message} from 'antd';
 import PCHeader from './pc_header';
 import PCFooter from './pc_footer';
 import CommonComments from './common_comments';
@@ -11,6 +11,28 @@ export default class PCNewsDetails extends React.Component {
 			newsItem: ''
 		};
 	};
+
+	countDown() {
+		console.log("Show!");
+		let secondsToGo = 5;
+		const modal = Modal.confirm({
+			title: "Wanna see more || Can't load the news?",
+			content: `Some news sources don't allow us to use their news directly, so you need view the news via their website.
+			(This modal will close after ${secondsToGo} seconds.)`,
+			okText : "jump",
+			onOk: ()=>{window.open(decodeURIComponent(this.props.match.params.url), "_blank")},
+		});
+		setInterval(() => {
+			secondsToGo -= 1;
+			modal.update({
+				content: `Some news sources don't allow us to use their news directly, so you need view the news via their website.
+				(This modal will close after ${secondsToGo} seconds.)`,
+			});
+		}, 1000);
+		setTimeout(() => modal.destroy(), secondsToGo * 1000);
+	}
+
+	
     escFunction(event){
         if(event.keyCode === 27) {
           //Do whatever when esc is pressed
@@ -21,12 +43,17 @@ export default class PCNewsDetails extends React.Component {
 
     componentDidMount(){
         message.info("Press 'ESC' to back.");
-        document.addEventListener("keydown", this.escFunction, false);
+				document.addEventListener("keydown", this.escFunction, false);
+				setTimeout(() => {this.countDown()},3500);
+			
       }
     
-      componentWillUnmount(){
-        document.removeEventListener("keydown", this.escFunction, false);
-	  }
+    componentWillUnmount(){
+				document.removeEventListener("keydown", this.escFunction, false);
+				
+		}
+		
+		
 	  
 	render() {
 		console.log(decodeURIComponent(this.props.match.params.url));
@@ -36,7 +63,6 @@ export default class PCNewsDetails extends React.Component {
 				<PCHeader></PCHeader>
 				<Row>
 					<Col span={3}></Col>
-					
 					<Col span={16} className="container">
 							<div className="articleContainer">
 								<iframe className="mainArticle" src={decodeURIComponent(this.props.match.params.url)}></iframe>	
