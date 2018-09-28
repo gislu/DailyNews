@@ -13,8 +13,7 @@ export default class PCNewsDetails extends React.Component {
 	};
 
 	countDown() {
-		console.log("Show!");
-		let secondsToGo = 5;
+		let secondsToGo = 4;
 		const modal = Modal.confirm({
 			title: "Wanna see more || Can't load the news?",
 			content: `Some news sources don't allow us to use their news directly, so you need view the news via their website.
