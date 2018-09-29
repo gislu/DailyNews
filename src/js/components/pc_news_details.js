@@ -13,9 +13,9 @@ export default class PCNewsDetails extends React.Component {
 	};
 
 	countDown() {
-		let secondsToGo = 4;
+		let secondsToGo = 6;
 		const modal = Modal.confirm({
-			title: "Wanna see more || Can't load the news?",
+			title: "Can't load the news or wanna see more?",
 			content: `Some news sources don't allow us to use their news directly, so you need view the news via their website.
 			(This modal will close after ${secondsToGo} seconds.)`,
 			okText : "jump",
