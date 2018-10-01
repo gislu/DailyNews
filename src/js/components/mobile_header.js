@@ -21,7 +21,7 @@ class MobileHeader extends React.Component {
 			action: 'login',
 			hasLogined: false,
 			userNickName: '',
-			userid: 0
+			userid: ''
 		};
 	};
 	setModalVisible(value)
