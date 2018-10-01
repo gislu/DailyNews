@@ -48,7 +48,8 @@ export default class PCNewsContainer extends React.Component {
 						</Tabs>
 						<div>
 							<PCNewsImageBlock count={8} type="sports" width="100%" cartTitle="Sports" imageWidth="130px"/>
-							<PCNewsImageBlock count={16} type="science" width="100%" cartTitle="Science" imageWidth="130px"/>
+							<PCNewsImageBlock count={8} type="science" width="100%" cartTitle="Science" imageWidth="130px"/>
+							<PCNewsImageBlock count={8} type="health" width="100%" cartTitle="Science" imageWidth="130px"/>
 						</div>
 					</Col>
 					<Col span={2}></Col>
