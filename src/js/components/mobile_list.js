@@ -12,16 +12,42 @@ export default class MobileList extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions).then(response => response.json()).then(json => this.setState({news: json}));
+		let count = this.props.count + 15;
+		let url ="https://newsapi.org/v2/top-headlines?country=us&category="+this.props.type+"&pageSize="+ count +"&apiKey=8611169f68f94d8582ac555bf7173ec4";
+		fetch(url,myFetchOptions)
+		.then(response => response.json())
+		.then(
+			json => {
+			let artpool = json.articles;
+			let articles = [];
+			let num = 0;
+			for(let item in artpool){
+				if(artpool[item].urlToImage == null){
+					continue;
+				}
+				if(num < this.props.count){
+					num++;
+					articles.push(artpool[item]);
+				}
+				
+			}
+			console.log("url is: " + url);
+			console.log(articles);
+			this.setState({news: articles})
+		}	
+		);
 	};
 	render() {
 		const {news} = this.state;
 		const newsList = news.length
 			? news.map((newsItem, index) => (
         <section key={index} className="m_article list-item special_section clearfix">
-          <Link to={`details/${newsItem.uniquekey}`}>
+					<Link to=
+					{{
+						pathname: `details/${encodeURIComponent(newsItem.url)}/${encodeURIComponent(newsItem.title)}`
+					  }}>
             <div className="m_article_img">
-              <img src={newsItem.thumbnail_pic_s} alt={newsItem.title} />
+              <img src={newsItem.urlToImage} alt={newsItem.title} />
             </div>
             <div className="m_article_info">
               <div className="m_article_title">
@@ -29,8 +55,8 @@ export default class MobileList extends React.Component {
               </div>
               <div className="m_article_desc clearfix">
                 <div className="m_article_desc_l">
-                  <span className="m_article_channel">{newsItem.realtype}</span>
-                  <span className="m_article_time">{newsItem.date}</span>
+                  <span className="m_article_channel">{this.props.type}</span>
+                  <span className="m_article_time">{newsItem.publishedAt}</span>
                 </div>
               </div>
             </div>
