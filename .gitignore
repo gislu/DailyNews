@@ -3,4 +3,8 @@
 .DS_Store
 .DS_Store?
 .vscode/settings.json
+
+#config folder#
+######################
 node_modules/
+.vscode
