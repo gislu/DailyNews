@@ -29,7 +29,7 @@ class MobileHeader extends React.Component {
 		this.setState({modalVisible: value});
 	};
 	componentWillMount() {
-		if (localStorage.userid != '') {
+		if (localStorage.userid && localStorage.userid!='' ) {
 			this.setState({hasLogined: true});
 			this.setState({userNickName: localStorage.userNickName, userid: localStorage.userid});
 		}
