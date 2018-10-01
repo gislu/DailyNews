@@ -5,11 +5,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
-  // externals: {
-  //   "antd": 'antd',
-  //   "react": "React" ,
-  //   "react-dom": "ReactDOM"
-  // },
   context: path.join(__dirname),
   devtool: false, //update: null
   entry: "./src/js/root.js",

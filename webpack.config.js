@@ -36,10 +36,16 @@ module.exports = {
     path: __dirname,
     filename: "./src/bundle.js"
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    new BabiliPlugin(),
-  ],
+  plugins: [
+    //update: new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(), //update: https://github.com/webpack/webpack/issues/1964
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.UglifyJsPlugin({minimize:true, mangle: false, sourcemap: false,
+      compress: {
+        warnings: false
+      }
+    }),
+    //update: 把入口文件vendors数组指定的第三方包打包成verdors.js
+    //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: './vendor.bundle.js' }),//name: 'vendor', filename: './vendor.bundle.js'
+  ]
 };
