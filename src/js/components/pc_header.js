@@ -22,12 +22,13 @@ class PCHeader extends React.Component {
 			action: 'login',
 			hasLogined: false,
 			userNickName: '',
-			userid: 0
+			userid: ''
 		};
 	};
 
  
 	componentWillMount(){
+		console.log(localStorage.userid);
 		if (localStorage.userid!='') {
 			this.setState({hasLogined:true});
 			this.setState({userNickName:localStorage.userNickName,userid:localStorage.userid});
