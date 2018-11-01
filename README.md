@@ -12,6 +12,5 @@ Built UI by Ant-Design library.
 Run `webpack-dev-server` for a dev server. Navigate to `http://localhost:8080/`
 
 
-Here is the [Demo](https://gislu.github.io/DailyNews/index.html#/) 
-
+Here is the [Demo](https://gislu.github.io/DailyNews/index.html#/), in this demo you can register your own account. But you'd better use a complex user name beacause most simple user name has been used and I haven't implemented the account duplicate checking function in the server-side : (
 
