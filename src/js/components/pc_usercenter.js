@@ -61,7 +61,7 @@ export default class PCUserCenter extends React.Component {
 		const {usercollection,usercomments} = this.state;
 		const usercollectionList = usercollection.length ?
 		usercollection.map((uc,index)=>(
-				<Card key={index} title={uc.uniquekey} extra={<a href={`/details/${uc.uniquekey}`}>View</a>}>
+				<Card key={index} title={uc.uniquekey} extra={<a href={uc.uniquekey}>View</a>}>
 					<p>{uc.Title}</p>
 				</Card>
 		))
